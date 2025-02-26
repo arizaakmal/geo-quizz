@@ -8,6 +8,9 @@ export default {
       fontFamily: {
         bungee: ["Bungee", "cursive"],
       },
+      animation: {
+        "fade-in": "fadeIn 2s ease-in-out",
+      },
     },
   },
   plugins: [flowbite.plugin()],
