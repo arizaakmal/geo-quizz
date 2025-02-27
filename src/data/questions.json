@@ -1,0 +1,67 @@
+[
+  {
+    "question": "What is the capital of Canada?",
+    "options": ["Toronto", "Vancouver", "Ottawa", "Montreal"],
+    "answer": "Ottawa"
+  },
+  {
+    "question": "Which is the longest river in the world?",
+    "options": [
+      "Amazon River",
+      "Yangtze River",
+      "Mississippi River",
+      "Nile River"
+    ],
+    "answer": "Nile River"
+  },
+  {
+    "question": "Which country has the largest land area?",
+    "options": ["United States", "China", "Russia", "Canada"],
+    "answer": "Russia"
+  },
+  {
+    "question": "Which continent has the most countries?",
+    "options": ["Asia", "Europe", "Africa", "South America"],
+    "answer": "Africa"
+  },
+  {
+    "question": "What is the name of the largest ocean on Earth?",
+    "options": [
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Pacific Ocean",
+      "Arctic Ocean"
+    ],
+    "answer": "Pacific Ocean"
+  },
+  {
+    "question": "Which desert is the largest in the world?",
+    "options": [
+      "Gobi Desert",
+      "Kalahari Desert",
+      "Sahara Desert",
+      "Antarctic Desert"
+    ],
+    "answer": "Antarctic Desert"
+  },
+  {
+    "question": "Which is the smallest country in the world by area?",
+    "options": ["Monaco", "San Marino", "Liechtenstein", "Vatican City"],
+    "answer": "Vatican City"
+  },
+  {
+    "question": "Mount Everest is part of which mountain range?",
+    "options": ["Rocky Mountains", "Andes", "Himalayas", "Alps"],
+    "answer": "Himalayas"
+  },
+  {
+    "question": "Which lake is the largest by surface area?",
+    "options": ["Lake Victoria", "Lake Superior", "Caspian Sea", "Lake Baikal"],
+    "answer": "Caspian Sea"
+  },
+  {
+    "question": "Which country is located on both Europe and Asia?",
+    "options": ["Russia", "Turkey", "Kazakhstan", "All of the above"],
+    "answer": "All of the above"
+  }
+]
