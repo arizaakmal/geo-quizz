@@ -2,17 +2,19 @@ import { useState } from "react";
 import Title from "./components/Title";
 import PlayButton from "./components/PlayButton";
 import Footer from "./components/Footer";
-import Question from "./components/Question";
-import AllOptionButton from "./components/AllOptionButton";
 import Main from "./components/Main";
 import HomePage from "./components/HomePage";
 import QuestionPage from "./components/QuestionPage";
+import questionsData from "./data/questions.json";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
   const handleClick = () => {
     setIsVisible(false);
   };
+
+  const [questionIndex] = useState(0);
+  // const [question, setQuestion] = useState(questionsData[questionIndex]);
 
   return (
     <Main>
@@ -21,10 +23,12 @@ function App() {
         {isVisible && <PlayButton onClick={handleClick} />}
       </HomePage>
 
-      <QuestionPage>
-        {!isVisible && <Question />}
-        {!isVisible && <AllOptionButton />}
-      </QuestionPage>
+      {!isVisible && (
+        <QuestionPage
+          questionsData={questionsData}
+          questionIndex={questionIndex}
+        />
+      )}
 
       <Footer />
     </Main>
