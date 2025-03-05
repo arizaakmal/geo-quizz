@@ -1,5 +1,6 @@
 import Question from "./Question";
 import AllOptionButton from "./AllOptionButton";
+import { useState } from "react";
 
 type QuestionPageProps = {
   questionsData: {
@@ -14,12 +15,21 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
   questionsData,
   questionIndex,
 }) => {
-  const question = questionsData[questionIndex];
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useState(questionIndex);
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < questionsData.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const question = questionsData[currentQuestionIndex];
 
   return (
     <div>
       <Question question={question} />
-      <AllOptionButton question={question} />
+      <AllOptionButton question={question} onOptionClick={handleNextQuestion} />
     </div>
   );
 };

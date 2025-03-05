@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Title from "./components/Title";
-import PlayButton from "./components/PlayButton";
-import Footer from "./components/Footer";
-import Main from "./components/Main";
-import HomePage from "./components/HomePage";
-import QuestionPage from "./components/QuestionPage";
+import Title from "./components/home/Title";
+import PlayButton from "./components/home/PlayButton";
+import Footer from "./components/main/Footer";
+import Main from "./components/main/Main";
+import HomePage from "./components/home/HomePage";
+import QuestionPage from "./components/question/QuestionPage";
 import questionsData from "./data/questions.json";
+// import Motion from "./components/motion";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -14,7 +15,6 @@ function App() {
   };
 
   const [questionIndex] = useState(0);
-  // const [question, setQuestion] = useState(questionsData[questionIndex]);
 
   return (
     <Main>
@@ -29,12 +29,13 @@ function App() {
           questionIndex={questionIndex}
         />
       )}
-
+      {/* <Motion
+        isVisible={true}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      /> */}
       <Footer />
     </Main>
-    // <main className="flex min-h-screen flex-col items-center justify-start gap-2 bg-gradient-to-b from-indigo-500 to-cyan-400">
-
-    // </main>
   );
 }
 
