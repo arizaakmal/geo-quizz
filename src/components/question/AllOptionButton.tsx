@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import OptionButton from "./OptionButton";
-// import { AnimatePresence } from "motion/react";
-// import { motion } from "motion/react";
 
 type AllOptionButtonProps = {
   question: {
@@ -10,12 +8,17 @@ type AllOptionButtonProps = {
     answer: string;
   };
   onOptionClick: () => void;
+  isWaiting: boolean;
+  hasAnswered: boolean;
 };
 const AllOptionButton: React.FC<AllOptionButtonProps> = ({
   question,
   onOptionClick,
+  isWaiting,
+  hasAnswered,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  // const [isAnswered, setIsAnswered] = useState(false);
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     onOptionClick();
@@ -29,7 +32,9 @@ const AllOptionButton: React.FC<AllOptionButtonProps> = ({
           option={option}
           isCorrect={selectedOption === option && option === question.answer}
           isSelected={selectedOption === option}
+          isAnswer={hasAnswered && option === question.answer}
           onClick={() => handleOptionClick(option)}
+          isWaiting={isWaiting}
         />
       ))}
     </div>

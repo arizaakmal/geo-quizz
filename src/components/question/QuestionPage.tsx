@@ -17,10 +17,18 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
 }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     useState(questionIndex);
+  const [isWaiting, setIsWaiting] = useState(false);
+  const [hasAnswered, setHasAnswered] = useState(false);
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex < questionsData.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setIsWaiting(true);
+      setHasAnswered(true);
+      setTimeout(() => {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setIsWaiting(false);
+        setHasAnswered(false);
+      }, 1000);
     }
   };
 
@@ -29,7 +37,12 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
   return (
     <div>
       <Question question={question} />
-      <AllOptionButton question={question} onOptionClick={handleNextQuestion} />
+      <AllOptionButton
+        question={question}
+        onOptionClick={handleNextQuestion}
+        isWaiting={isWaiting}
+        hasAnswered={hasAnswered}
+      />
     </div>
   );
 };

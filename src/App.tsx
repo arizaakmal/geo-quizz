@@ -29,11 +29,6 @@ function App() {
           questionIndex={questionIndex}
         />
       )}
-      {/* <Motion
-        isVisible={true}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-      /> */}
       <Footer />
     </Main>
   );
