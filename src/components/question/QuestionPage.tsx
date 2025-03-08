@@ -1,6 +1,5 @@
 import Question from "./Question";
 import AllOptionButton from "./AllOptionButton";
-import { useState } from "react";
 
 type QuestionPageProps = {
   questionsData: {
@@ -9,37 +8,26 @@ type QuestionPageProps = {
     answer: string;
   }[];
   questionIndex: number;
+  onNextQuestion: () => void;
+  isWaiting: boolean;
+  hasAnswered: boolean;
 };
 
 const QuestionPage: React.FC<QuestionPageProps> = ({
   questionsData,
   questionIndex,
+  onNextQuestion,
+  isWaiting,
+  hasAnswered,
 }) => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] =
-    useState(questionIndex);
-  const [isWaiting, setIsWaiting] = useState(false);
-  const [hasAnswered, setHasAnswered] = useState(false);
-
-  const handleNextQuestion = () => {
-    if (currentQuestionIndex < questionsData.length - 1) {
-      setIsWaiting(true);
-      setHasAnswered(true);
-      setTimeout(() => {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setIsWaiting(false);
-        setHasAnswered(false);
-      }, 1000);
-    }
-  };
-
-  const question = questionsData[currentQuestionIndex];
+  const question = questionsData[questionIndex];
 
   return (
     <div>
       <Question question={question} />
       <AllOptionButton
         question={question}
-        onOptionClick={handleNextQuestion}
+        onOptionClick={onNextQuestion}
         isWaiting={isWaiting}
         hasAnswered={hasAnswered}
       />
