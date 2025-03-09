@@ -7,6 +7,7 @@ import HomePage from "./components/home/HomePage";
 import QuestionPage from "./components/question/QuestionPage";
 import questionsData from "./data/questions.json";
 import ScorePage from "./components/score/ScorePage";
+import AllOptionButton from "./components/question/AllOptionButton";
 
 function App() {
   const [isVisible, setIsVisible] = useState(true);
@@ -31,7 +32,7 @@ function App() {
       }
       setIsWaiting(false);
       setHasAnswered(false);
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -47,10 +48,14 @@ function App() {
         <QuestionPage
           questionsData={questionsData}
           questionIndex={questionIndex}
-          onNextQuestion={handleNextQuestion}
-          isWaiting={isWaiting}
-          hasAnswered={hasAnswered}
-        />
+        >
+          <AllOptionButton
+            question={questionsData[questionIndex]}
+            onOptionClick={handleNextQuestion}
+            isWaiting={isWaiting}
+            hasAnswered={hasAnswered}
+          />
+        </QuestionPage>
       )}
       <Footer />
     </Main>

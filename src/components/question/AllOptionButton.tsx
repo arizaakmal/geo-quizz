@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import OptionButton from "./OptionButton";
+import { Howl } from "howler";
 
 type AllOptionButtonProps = {
   question: {
@@ -18,9 +19,24 @@ const AllOptionButton: React.FC<AllOptionButtonProps> = ({
   hasAnswered,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  // const [isAnswered, setIsAnswered] = useState(false);
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
+
+    const correctSound = new Howl({
+      src: ["/public/sound/correct-choice.mp3"],
+      html5: true,
+    });
+    const wrongSound = new Howl({
+      src: ["/public/sound/wrong-choice.mp3"],
+      html5: true,
+    });
+
+    if (option === question.answer) {
+      correctSound.play();
+    } else {
+      wrongSound.play();
+    }
+
     onOptionClick();
   };
 
