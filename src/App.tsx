@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Title from "./components/home/Title";
 import PlayButton from "./components/home/PlayButton";
 import Footer from "./components/main/Footer";
@@ -37,26 +38,65 @@ function App() {
 
   return (
     <Main>
-      {isVisible ? (
-        <HomePage>
-          <Title />
-          <PlayButton onClick={handleClick} />
-        </HomePage>
-      ) : isFinished ? (
-        <ScorePage />
-      ) : (
-        <QuestionPage
-          questionsData={questionsData}
-          questionIndex={questionIndex}
-        >
-          <AllOptionButton
-            question={questionsData[questionIndex]}
-            onOptionClick={handleNextQuestion}
-            isWaiting={isWaiting}
-            hasAnswered={hasAnswered}
-          />
-        </QuestionPage>
-      )}
+      <AnimatePresence mode="wait">
+        {isVisible ? (
+          <motion.div key="home">
+            <HomePage>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{
+                  opacity: 0,
+                  y: -20,
+                  scale: 0,
+                  transition: { duration: 0.5, delay: 0.7 },
+                }}
+              >
+                <Title />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{
+                  opacity: 0,
+                  y: 20,
+                  scale: 0,
+                  transition: { duration: 0.5 },
+                }}
+              >
+                <PlayButton onClick={handleClick} />
+              </motion.div>
+            </HomePage>
+          </motion.div>
+        ) : isFinished ? (
+          <motion.div key="score">
+            <ScorePage />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="question"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{
+              duration: 0.5,
+              scale: { type: "spring", stiffness: 150, damping: 15 },
+            }}
+          >
+            <QuestionPage
+              questionsData={questionsData}
+              questionIndex={questionIndex}
+            >
+              <AllOptionButton
+                question={questionsData[questionIndex]}
+                onOptionClick={handleNextQuestion}
+                isWaiting={isWaiting}
+                hasAnswered={hasAnswered}
+              />
+            </QuestionPage>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <Footer />
     </Main>
   );
