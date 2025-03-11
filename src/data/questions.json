@@ -63,5 +63,140 @@
     "question": "Which country is located on both Europe and Asia?",
     "options": ["Russia", "Turkey", "Kazakhstan", "All of the above"],
     "answer": "All of the above"
+  },
+  {
+    "question": "Which country has the most islands?",
+    "options": ["Indonesia", "Philippines", "Norway", "Sweden"],
+    "answer": "Sweden"
+  },
+  {
+    "question": "What is the capital of Australia?",
+    "options": ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+    "answer": "Canberra"
+  },
+  {
+    "question": "Which country is known as the Land of the Rising Sun?",
+    "options": ["China", "South Korea", "Japan", "Vietnam"],
+    "answer": "Japan"
+  },
+  {
+    "question": "Which African country has the highest population?",
+    "options": ["Egypt", "South Africa", "Nigeria", "Ethiopia"],
+    "answer": "Nigeria"
+  },
+  {
+    "question": "Which country shares the longest land border with the USA?",
+    "options": ["Mexico", "Canada", "Russia", "Cuba"],
+    "answer": "Canada"
+  },
+  {
+    "question": "Which is the tallest waterfall in the world?",
+    "options": [
+      "Victoria Falls",
+      "Niagara Falls",
+      "Angel Falls",
+      "Iguazu Falls"
+    ],
+    "answer": "Angel Falls"
+  },
+  {
+    "question": "Which city is known as the 'Eternal City'?",
+    "options": ["Paris", "Athens", "Rome", "Cairo"],
+    "answer": "Rome"
+  },
+  {
+    "question": "Which continent has the largest population?",
+    "options": ["Africa", "Europe", "Asia", "South America"],
+    "answer": "Asia"
+  },
+  {
+    "question": "What is the capital of Brazil?",
+    "options": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"],
+    "answer": "Brasília"
+  },
+  {
+    "question": "Which U.S. state is the largest by area?",
+    "options": ["Texas", "California", "Alaska", "Montana"],
+    "answer": "Alaska"
+  },
+  {
+    "question": "What is the longest mountain range in the world?",
+    "options": ["Rocky Mountains", "Himalayas", "Andes", "Alps"],
+    "answer": "Andes"
+  },
+  {
+    "question": "Which European country has the most neighbors?",
+    "options": ["France", "Germany", "Russia", "Poland"],
+    "answer": "Germany"
+  },
+  {
+    "question": "What is the name of the deepest ocean trench?",
+    "options": [
+      "Java Trench",
+      "Mariana Trench",
+      "Puerto Rico Trench",
+      "Tonga Trench"
+    ],
+    "answer": "Mariana Trench"
+  },
+  {
+    "question": "Which country has the highest number of active volcanoes?",
+    "options": ["Japan", "Indonesia", "Italy", "United States"],
+    "answer": "Indonesia"
+  },
+  {
+    "question": "What is the driest place on Earth?",
+    "options": [
+      "Sahara Desert",
+      "Atacama Desert",
+      "Death Valley",
+      "Gobi Desert"
+    ],
+    "answer": "Atacama Desert"
+  },
+  {
+    "question": "Which European country is known for having over 1500 lakes?",
+    "options": ["Sweden", "Finland", "Norway", "Iceland"],
+    "answer": "Finland"
+  },
+  {
+    "question": "Which country is home to the Great Wall?",
+    "options": ["Japan", "India", "Mongolia", "China"],
+    "answer": "China"
+  },
+  {
+    "question": "Which country has the longest coastline in the world?",
+    "options": ["Australia", "Canada", "Russia", "United States"],
+    "answer": "Canada"
+  },
+  {
+    "question": "What is the capital of South Africa?",
+    "options": ["Johannesburg", "Cape Town", "Pretoria", "Durban"],
+    "answer": "Pretoria"
+  },
+  {
+    "question": "Which country has the highest number of pyramids?",
+    "options": ["Egypt", "Mexico", "Sudan", "China"],
+    "answer": "Sudan"
+  },
+  {
+    "question": "Which river flows through Egypt?",
+    "options": ["Amazon River", "Nile River", "Ganges River", "Yangtze River"],
+    "answer": "Nile River"
+  },
+  {
+    "question": "Which country has the highest number of lakes?",
+    "options": ["Russia", "United States", "Canada", "Finland"],
+    "answer": "Canada"
+  },
+  {
+    "question": "Which country has the second-largest population?",
+    "options": ["United States", "India", "China", "Indonesia"],
+    "answer": "India"
+  },
+  {
+    "question": "What is the official language of Brazil?",
+    "options": ["Spanish", "English", "Portuguese", "French"],
+    "answer": "Portuguese"
   }
 ]
