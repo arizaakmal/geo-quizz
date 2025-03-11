@@ -16,14 +16,19 @@ function App() {
   const [isFinished, setIsFinished] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
   const [hasAnswered, setHasAnswered] = useState(false);
+  const [score, setScore] = useState(0);
 
   const handleClick = () => {
     setIsVisible(false);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = (isCorrect: boolean) => {
     setIsWaiting(true);
     setHasAnswered(true);
+
+    if (isCorrect) {
+      setScore((prevScore) => prevScore + 10);
+    }
 
     setTimeout(() => {
       if (questionIndex < questionsData.length - 1) {
@@ -70,7 +75,7 @@ function App() {
           </motion.div>
         ) : isFinished ? (
           <motion.div key="score">
-            <ScorePage />
+            <ScorePage score={score} />
           </motion.div>
         ) : (
           <motion.div

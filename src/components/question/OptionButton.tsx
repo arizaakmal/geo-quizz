@@ -1,6 +1,3 @@
-// import { Howl } from "howler";
-// import { useEffect } from "react";
-
 type OptionButtonProps = {
   option: string;
   isCorrect: boolean;
@@ -32,23 +29,6 @@ const OptionButton: React.FC<OptionButtonProps> = ({
   if (isWaiting) {
     buttonClass += " pointer-events-none";
   }
-
-  // useEffect(() => {
-  //   const correctSound = new Howl({
-  //     src: ["/public/sound/correct-choice.mp3"],
-  //     html5: true,
-  //   });
-  //   const wrongSound = new Howl({
-  //     src: ["/public/sound/wrong-choice.mp3"],
-  //     html5: true,
-  //   });
-
-  //   if (isAnswer) {
-  //     correctSound.play();
-  //   } else if (isSelected && !isCorrect) {
-  //     wrongSound.play();
-  //   }
-  // }, [isAnswer, isSelected, isCorrect]);
 
   return (
     <button onClick={onClick} className={buttonClass} disabled={isWaiting}>

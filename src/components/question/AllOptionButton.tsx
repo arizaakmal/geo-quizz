@@ -8,7 +8,7 @@ type AllOptionButtonProps = {
     options: string[];
     answer: string;
   };
-  onOptionClick: () => void;
+  onOptionClick: (isCorrect: boolean) => void;
   isWaiting: boolean;
   hasAnswered: boolean;
 };
@@ -19,25 +19,28 @@ const AllOptionButton: React.FC<AllOptionButtonProps> = ({
   hasAnswered,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
 
     const correctSound = new Howl({
-      src: ["/public/sound/correct-choice.mp3"],
+      src: ["/sound/correct-choice.mp3"],
       html5: true,
     });
     const wrongSound = new Howl({
-      src: ["/public/sound/wrong-choice.mp3"],
+      src: ["/sound/wrong-choice.mp3"],
       html5: true,
     });
 
-    if (option === question.answer) {
+    const isCorrect = option === question.answer;
+
+    if (isCorrect) {
       correctSound.play();
     } else {
       wrongSound.play();
     }
 
-    onOptionClick();
+    onOptionClick(isCorrect);
   };
 
   return (
