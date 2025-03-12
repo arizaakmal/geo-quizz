@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Title from "./components/home/Title";
 import PlayButton from "./components/home/PlayButton";
@@ -6,17 +6,36 @@ import Footer from "./components/main/Footer";
 import Main from "./components/main/Main";
 import HomePage from "./components/home/HomePage";
 import QuestionPage from "./components/question/QuestionPage";
-import questionsData from "./data/questions.json";
+import allQuestionsData from "./data/questions.json";
 import ScorePage from "./components/score/ScorePage";
 import AllOptionButton from "./components/question/AllOptionButton";
 
 function App() {
+  const [questionsData, setQuestionsData] = useState<Question[]>([]);
   const [isVisible, setIsVisible] = useState(true);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
   const [isWaiting, setIsWaiting] = useState(false);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [score, setScore] = useState(0);
+
+  type Question = {
+    question: string;
+    options: string[];
+    answer: string;
+  };
+
+  const getRandomQuestions = useCallback(
+    (allQuestionsData: Question[]): Question[] => {
+      return [...allQuestionsData].sort(() => Math.random() - 0.5).slice(0, 10);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    const randomQuestions = getRandomQuestions(allQuestionsData);
+    setQuestionsData(randomQuestions);
+  }, [getRandomQuestions]);
 
   const handleClick = () => {
     setIsVisible(false);
