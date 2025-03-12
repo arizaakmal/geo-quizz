@@ -198,5 +198,110 @@
     "question": "What is the official language of Brazil?",
     "options": ["Spanish", "English", "Portuguese", "French"],
     "answer": "Portuguese"
+  },
+  {
+    "question": "Which U.S. state has the most islands?",
+    "options": ["Florida", "Hawaii", "Alaska", "California"],
+    "answer": "Alaska"
+  },
+  {
+    "question": "Which is the largest volcano in the world?",
+    "options": [
+      "Mauna Loa",
+      "Mount Everest",
+      "Mount Kilimanjaro",
+      "Mount Fuji"
+    ],
+    "answer": "Mauna Loa"
+  },
+  {
+    "question": "Which city is known as the 'City of Love'?",
+    "options": ["Venice", "Rome", "Paris", "Prague"],
+    "answer": "Paris"
+  },
+  {
+    "question": "Which is the smallest ocean in the world?",
+    "options": [
+      "Indian Ocean",
+      "Atlantic Ocean",
+      "Arctic Ocean",
+      "Southern Ocean"
+    ],
+    "answer": "Arctic Ocean"
+  },
+  {
+    "question": "Which African country is known as the 'Pearl of Africa'?",
+    "options": ["Kenya", "Uganda", "Tanzania", "Ethiopia"],
+    "answer": "Uganda"
+  },
+  {
+    "question": "Which desert is the hottest in the world?",
+    "options": [
+      "Sahara Desert",
+      "Gobi Desert",
+      "Kalahari Desert",
+      "Mojave Desert"
+    ],
+    "answer": "Sahara Desert"
+  },
+  {
+    "question": "Which is the longest wall in the world?",
+    "options": [
+      "Great Wall of China",
+      "Berlin Wall",
+      "Hadrian's Wall",
+      "Western Wall"
+    ],
+    "answer": "Great Wall of China"
+  },
+  {
+    "question": "What is the capital of Argentina?",
+    "options": ["Santiago", "Buenos Aires", "Lima", "Bogotá"],
+    "answer": "Buenos Aires"
+  },
+  {
+    "question": "Which country is home to Machu Picchu?",
+    "options": ["Brazil", "Peru", "Chile", "Ecuador"],
+    "answer": "Peru"
+  },
+  {
+    "question": "Which is the largest freshwater lake by volume?",
+    "options": [
+      "Lake Superior",
+      "Lake Baikal",
+      "Lake Victoria",
+      "Lake Tanganyika"
+    ],
+    "answer": "Lake Baikal"
+  },
+  {
+    "question": "Which European country is famous for windmills and tulips?",
+    "options": ["Belgium", "Denmark", "Netherlands", "Sweden"],
+    "answer": "Netherlands"
+  },
+  {
+    "question": "Which is the most spoken language in the world?",
+    "options": ["English", "Mandarin Chinese", "Spanish", "Hindi"],
+    "answer": "Mandarin Chinese"
+  },
+  {
+    "question": "Which continent is home to the Amazon Rainforest?",
+    "options": ["Africa", "Asia", "South America", "North America"],
+    "answer": "South America"
+  },
+  {
+    "question": "Which island is the largest in the world?",
+    "options": ["Borneo", "Greenland", "New Guinea", "Madagascar"],
+    "answer": "Greenland"
+  },
+  {
+    "question": "Which is the only continent without a desert?",
+    "options": ["Europe", "North America", "South America", "Asia"],
+    "answer": "Europe"
+  },
+  {
+    "question": "Which U.S. state is known as the 'Sunshine State'?",
+    "options": ["California", "Hawaii", "Florida", "Arizona"],
+    "answer": "Florida"
   }
 ]
