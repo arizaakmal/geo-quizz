@@ -60,6 +60,17 @@ function App() {
     }, 1500);
   };
 
+  const handlePlayAgain = () => {
+    const randomQuestions = getRandomQuestions(allQuestionsData);
+    setQuestionsData(randomQuestions);
+    setIsVisible(false);
+    setQuestionIndex(0);
+    setIsFinished(false);
+    setIsWaiting(false);
+    setHasAnswered(false);
+    setScore(0);
+  };
+
   return (
     <Main>
       <AnimatePresence mode="wait">
@@ -94,7 +105,7 @@ function App() {
           </motion.div>
         ) : isFinished ? (
           <motion.div key="score">
-            <ScorePage score={score} />
+            <ScorePage score={score} onPlayAgain={handlePlayAgain} />
           </motion.div>
         ) : (
           <motion.div
