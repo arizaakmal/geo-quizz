@@ -26,10 +26,12 @@ const AllOptionButton: React.FC<AllOptionButtonProps> = ({
     const correctSound = new Howl({
       src: ["/sound/correct-choice.mp3"],
       html5: true,
+      volume: 0.3,
     });
     const wrongSound = new Howl({
       src: ["/sound/wrong-choice.mp3"],
       html5: true,
+      volume: 0.3,
     });
 
     const isCorrect = option === question.answer;

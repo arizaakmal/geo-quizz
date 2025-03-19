@@ -71,6 +71,15 @@ function App() {
     setScore(0);
   };
 
+  const handleHome = () => {
+    setIsVisible(true);
+    setQuestionIndex(0);
+    setIsFinished(false);
+    setIsWaiting(false);
+    setHasAnswered(false);
+    setScore(0);
+  };
+
   return (
     <Main>
       <AnimatePresence mode="wait">
@@ -105,7 +114,11 @@ function App() {
           </motion.div>
         ) : isFinished ? (
           <motion.div key="score">
-            <ScorePage score={score} onPlayAgain={handlePlayAgain} />
+            <ScorePage
+              score={score}
+              onPlayAgain={handlePlayAgain}
+              onHome={handleHome}
+            />
           </motion.div>
         ) : (
           <motion.div
