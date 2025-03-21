@@ -19,10 +19,10 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
   const question = questionsData[questionIndex];
 
   return (
-    <div>
+    <>
       <Question question={question} />
       {children}
-    </div>
+    </>
   );
 };
 

@@ -10,8 +10,10 @@ type QuestionProps = {
 
 const Question: React.FC<QuestionProps> = ({ question }) => {
   return (
-    <div className="mt-20 flex h-44 w-full max-w-2xl items-center justify-center rounded bg-indigo-700/30 p-4 text-gray-200 shadow-lg">
-      <h2 className="text-center text-xl font-bold">{question.question}</h2>
+    <div className="mt-20 flex h-auto w-full  items-center justify-center rounded bg-indigo-700/30 p-4 text-gray-200 shadow-lg">
+      <h2 className="m-20  flex items-center justify-center text-center text-xl font-bold">
+        {question.question}
+      </h2>
     </div>
   );
 };

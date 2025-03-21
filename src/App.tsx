@@ -27,7 +27,7 @@ function App() {
 
   const getRandomQuestions = useCallback(
     (allQuestionsData: Question[]): Question[] => {
-      return [...allQuestionsData].sort(() => Math.random() - 0.5).slice(0, 10);
+      return [...allQuestionsData].sort(() => Math.random() - 0.5).slice(0, 1);
     },
     [],
   );
@@ -113,7 +113,12 @@ function App() {
             </HomePage>
           </motion.div>
         ) : isFinished ? (
-          <motion.div key="score">
+          <motion.div
+            key="score"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 2 } }}
+            exit={{ opacity: 0 }}
+          >
             <ScorePage
               score={score}
               onPlayAgain={handlePlayAgain}
