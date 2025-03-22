@@ -3,20 +3,22 @@ import { useMotionValue, animate } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRedo } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Howl } from "howler";
 
 type ScorePageProps = {
   score: number;
   onPlayAgain: () => void;
   onHome: () => void;
+  correctAnswer: number;
+  incorrectAnswer: number;
 };
 
 const ScorePage: React.FC<ScorePageProps> = ({
   score,
   onPlayAgain,
   onHome,
+  correctAnswer,
+  incorrectAnswer,
 }) => {
   const count = useMotionValue(0);
   const [displayCount, setDisplayCount] = useState(0);
@@ -44,7 +46,7 @@ const ScorePage: React.FC<ScorePageProps> = ({
     };
   }, [count, score]);
   return (
-    <div className="mt-24 flex h-auto flex-col items-center justify-center rounded-xl bg-teal-500 p-5 text-center shadow-xl">
+    <div className="mt-20 flex h-auto flex-col items-center justify-center rounded-xl bg-teal-500 p-5 text-center shadow-xl">
       <h1 className="font-bungee text-5xl font-bold text-gray-200 drop-shadow-lg">
         Your score:
       </h1>
@@ -56,17 +58,21 @@ const ScorePage: React.FC<ScorePageProps> = ({
           </h3>
         </div>
         <div className="mt-6 flex w-full max-w-[300px] justify-center space-x-6 text-2xl font-semibold text-gray-200">
-          <p className="flex w-1/2 min-w-[100px] items-center justify-center space-x-2 rounded-lg bg-green-500 px-6 py-4 shadow-md">
-            <FontAwesomeIcon icon={faCheck} className="text-2xl" />
-            <span className="text-5xl font-bold">10</span>
-          </p>
-          <p className="flex w-1/2 min-w-[100px] items-center justify-center space-x-2 rounded-lg bg-red-500 px-6 py-4 shadow-md">
-            <FontAwesomeIcon icon={faTimes} className="text-2xl" />
-            <span className="text-5xl font-bold">3</span>
-          </p>
+          <div className="flex w-1/2 min-w-[100px] flex-col items-center justify-center space-y-1 rounded-lg bg-green-500 px-6 py-2 shadow-md">
+            <div className="flex items-center space-x-2">
+              <span className="text-4xl">{correctAnswer}</span>
+            </div>
+            <p className="text-lg ">Correct</p>
+          </div>
+          <div className="flex w-1/2 min-w-[100px] flex-col items-center justify-center space-y-1 rounded-lg bg-red-500 px-6 py-2 shadow-md">
+            <div className="flex items-center space-x-2">
+              <span className="text-4xl">{incorrectAnswer}</span>
+            </div>
+            <p className="text-lg ">Incorrect</p>
+          </div>
         </div>
       </div>
-      <div className="mt-12 flex space-x-4">
+      <div className="mt-5 flex space-x-4">
         <button
           onClick={onHome}
           className="rounded-full bg-amber-500 px-8 py-3 text-2xl font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:bg-amber-600 active:translate-y-1"

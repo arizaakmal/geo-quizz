@@ -16,11 +16,9 @@ const QuestionPage: React.FC<QuestionPageProps> = ({
   questionIndex,
   children,
 }) => {
-  const question = questionsData[questionIndex];
-
   return (
     <>
-      <Question question={question} />
+      <Question questionsData={questionsData} questionIndex={questionIndex} />
       {children}
     </>
   );

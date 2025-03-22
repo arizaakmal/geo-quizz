@@ -18,6 +18,8 @@ function App() {
   const [isWaiting, setIsWaiting] = useState(false);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [score, setScore] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
   type Question = {
     question: string;
@@ -27,7 +29,7 @@ function App() {
 
   const getRandomQuestions = useCallback(
     (allQuestionsData: Question[]): Question[] => {
-      return [...allQuestionsData].sort(() => Math.random() - 0.5).slice(0, 1);
+      return [...allQuestionsData].sort(() => Math.random() - 0.5).slice(0, 10);
     },
     [],
   );
@@ -46,7 +48,10 @@ function App() {
     setHasAnswered(true);
 
     if (isCorrect) {
+      setCorrectAnswers((prevCorrect) => prevCorrect + 1);
       setScore((prevScore) => prevScore + 10);
+    } else {
+      setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
     }
 
     setTimeout(() => {
@@ -69,6 +74,8 @@ function App() {
     setIsWaiting(false);
     setHasAnswered(false);
     setScore(0);
+    setCorrectAnswers(0);
+    setIncorrectAnswers(0);
   };
 
   const handleHome = () => {
@@ -78,6 +85,8 @@ function App() {
     setIsWaiting(false);
     setHasAnswered(false);
     setScore(0);
+    setCorrectAnswers(0);
+    setIncorrectAnswers(0);
   };
 
   return (
@@ -121,6 +130,8 @@ function App() {
           >
             <ScorePage
               score={score}
+              correctAnswer={correctAnswers}
+              incorrectAnswer={incorrectAnswers}
               onPlayAgain={handlePlayAgain}
               onHome={handleHome}
             />
