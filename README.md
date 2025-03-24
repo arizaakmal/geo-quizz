@@ -11,6 +11,7 @@ Geo Quiz is a fun and interactive quiz application built with React. Test your k
 - Score tracking and display
 - Sound effects for correct and incorrect answers
 - Responsive design for mobile and desktop
+- Customizable number of questions
 
 ## Getting Started
 
@@ -20,9 +21,9 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 Make sure you have the following software installed on your machine:
 
-- [Node.js](https://nodejs.org/) (version 14 or higher)
-- [npm](https://www.npmjs.com/) (version 6 or higher)
-- [XAMPP](https://www.apachefriends.org/index.html) (for running the backend server)
+- <a href="https://nodejs.org/" target="_blank">Node.js</a> (version 14 or higher)
+- <a href="https://www.npmjs.com/" target="_blank">npm</a> (version 6 or higher)
+- <a href="https://www.apachefriends.org/index.html" target="_blank">XAMPP</a> (for running the backend server)
 
 ### Installation
 
