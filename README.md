@@ -29,5 +29,39 @@ Make sure you have the following software installed on your machine:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/geo-quiz.git
+   git clone https://github.com/arizaakmal/geo-quizz.git
    ```
+
+2. Navigate into the project directory:
+
+   ```bash
+   cd geo-quizz
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+To start the development server, run:
+
+```bash
+npm run dev
+```
+
+The application will be available at http://localhost:5173/
+
+## Technologies Used
+
+- React
+- Tailwind CSS
+- Framer Motion (for animations)
+- FontAwesome (for icons)
+- Netlify (for deployment)
+
+## license
+
+This project is licensed under the MIT License.
