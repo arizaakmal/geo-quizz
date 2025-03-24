@@ -9,6 +9,7 @@ import QuestionPage from "./components/question/QuestionPage";
 import allQuestionsData from "./data/questions.json";
 import ScorePage from "./components/score/ScorePage";
 import AllOptionButton from "./components/question/AllOptionButton";
+import DropdownQuestions from "./components/home/DropdownQuestions";
 
 function App() {
   const [questionsData, setQuestionsData] = useState<Question[]>([]);
@@ -20,6 +21,7 @@ function App() {
   const [score, setScore] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
+  const [numQuestions, setNumQuestions] = useState(10);
 
   type Question = {
     question: string;
@@ -29,9 +31,11 @@ function App() {
 
   const getRandomQuestions = useCallback(
     (allQuestionsData: Question[]): Question[] => {
-      return [...allQuestionsData].sort(() => Math.random() - 0.5).slice(0, 10);
+      return [...allQuestionsData]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, numQuestions);
     },
-    [],
+    [numQuestions],
   );
 
   useEffect(() => {
@@ -49,7 +53,7 @@ function App() {
 
     if (isCorrect) {
       setCorrectAnswers((prevCorrect) => prevCorrect + 1);
-      setScore((prevScore) => prevScore + 10);
+      setScore((prevScore) => prevScore + 100 / numQuestions);
     } else {
       setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
     }
@@ -102,17 +106,33 @@ function App() {
                   opacity: 0,
                   y: -20,
                   scale: 0,
-                  transition: { duration: 0.5, delay: 0.7 },
+                  transition: { duration: 0.5, delay: 1 },
                 }}
               >
                 <Title />
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 3 }}
+                exit={{
+                  opacity: 0,
+                  y: -20,
+                  scale: 0,
+                  transition: { duration: 0.5, delay: 0.5 },
+                }}
+              >
+                <DropdownQuestions
+                  numQuestions={numQuestions}
+                  setNumQuestions={setNumQuestions}
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{
                   opacity: 0,
-                  y: 20,
+                  y: -20,
                   scale: 0,
                   transition: { duration: 0.5 },
                 }}
