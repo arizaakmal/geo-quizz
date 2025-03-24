@@ -52,7 +52,7 @@ To start the development server, run:
 npm run dev
 ```
 
-The application will be available at http://localhost:5173/
+The application will be available at `http://localhost:5173/`
 
 ## Technologies Used
 
@@ -62,6 +62,6 @@ The application will be available at http://localhost:5173/
 - FontAwesome (for icons)
 - Netlify (for deployment)
 
-## license
+## License
 
 This project is licensed under the MIT License.
