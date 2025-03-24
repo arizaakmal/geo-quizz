@@ -58,6 +58,7 @@ The application will be available at `http://localhost:5173/`
 ## Technologies Used
 
 - React
+- Typescript
 - Tailwind CSS
 - Framer Motion (for animations)
 - FontAwesome (for icons)
