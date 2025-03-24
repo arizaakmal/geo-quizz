@@ -1,4 +1,4 @@
-# Geo Quiz
+# Geo Quizz
 
 Geo Quiz is a fun and interactive quiz application built with React. Test your knowledge on various geographical topics and see how well you score!
 
