@@ -46,7 +46,7 @@ const AllOptionButton: React.FC<AllOptionButtonProps> = ({
   };
 
   return (
-    <div className="mt-5 grid grid-cols-2 gap-10  ">
+    <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-10">
       {question.options.map((option, index) => (
         <OptionButton
           key={index}

@@ -16,7 +16,7 @@ const OptionButton: React.FC<OptionButtonProps> = ({
   isAnswer,
 }) => {
   let buttonClass =
-    "rounded-md px-20 py-4 text-xl font-bold text-white shadow-md";
+    "w-full sm:w-auto rounded-md px-10 sm:px-20 py-3 sm:py-4 text-lg sm:text-xl font-bold text-white text-center shadow-md";
 
   if (isAnswer) {
     buttonClass += " bg-green-500";

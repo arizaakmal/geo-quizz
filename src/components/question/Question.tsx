@@ -20,7 +20,7 @@ const Question: React.FC<QuestionProps> = ({
       <span className="absolute -top-3 rounded-full bg-teal-500 px-3 py-1 text-sm font-semibold text-gray-200 shadow-md">
         {questionIndex + 1} / {questionsData.length}
       </span>
-      <h2 className="m-20 flex items-center justify-center text-center text-xl font-bold">
+      <h2 className="m-16 sm:m-20 flex items-center justify-center text-center text-xl font-bold">
         {question.question}
       </h2>
     </div>
