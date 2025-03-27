@@ -18,10 +18,10 @@ const OptionButton: React.FC<OptionButtonProps> = ({
   let buttonClass =
     "w-full sm:w-auto rounded-md px-10 sm:px-20 py-3 sm:py-4 text-lg sm:text-xl font-bold text-white text-center shadow-md";
 
-  if (isAnswer) {
-    buttonClass += " bg-green-500";
-  } else if (isSelected) {
+  if (isSelected) {
     buttonClass += isCorrect ? " bg-green-500" : " bg-red-500";
+  } else if (isAnswer) {
+    buttonClass += " bg-green-500";
   } else {
     buttonClass += " bg-amber-500 hover:bg-amber-600";
   }

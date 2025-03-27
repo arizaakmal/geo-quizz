@@ -22,6 +22,7 @@ function App() {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [numQuestions, setNumQuestions] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(10);
 
   type Question = {
     question: string;
@@ -47,27 +48,55 @@ function App() {
     setIsVisible(false);
   };
 
-  const handleNextQuestion = (isCorrect: boolean) => {
-    setIsWaiting(true);
-    setHasAnswered(true);
+  const handleNextQuestion = useCallback(
+    (isCorrect: boolean) => {
+      setIsWaiting(true);
+      setHasAnswered(true);
 
-    if (isCorrect) {
-      setCorrectAnswers((prevCorrect) => prevCorrect + 1);
-      setScore((prevScore) => prevScore + 100 / numQuestions);
-    } else {
-      setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
-    }
-
-    setTimeout(() => {
-      if (questionIndex < questionsData.length - 1) {
-        setQuestionIndex((prevIndex) => prevIndex + 1);
+      if (isCorrect) {
+        setCorrectAnswers((prevCorrect) => prevCorrect + 1);
+        setScore((prevScore) => prevScore + 100 / numQuestions);
       } else {
-        setIsFinished(true);
+        setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
       }
-      setIsWaiting(false);
-      setHasAnswered(false);
-    }, 1500);
-  };
+
+      setTimeout(() => {
+        if (questionIndex < questionsData.length - 1) {
+          setQuestionIndex((prevIndex) => prevIndex + 1);
+        } else {
+          setIsFinished(true);
+        }
+        setIsWaiting(false);
+        setHasAnswered(false);
+      }, 1500);
+    },
+    [questionIndex, questionsData.length, numQuestions],
+  );
+
+  // const handleNoAnswer = useCallback(
+  //   (isCorrect: boolean) => {
+  //     setIsWaiting(true);
+  //     setHasAnswered(false);
+
+  //     if (isCorrect) {
+  //       setCorrectAnswers((prevCorrect) => prevCorrect + 1);
+  //       setScore((prevScore) => prevScore + 100 / numQuestions);
+  //     } else {
+  //       setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
+  //     }
+
+  //     setTimeout(() => {
+  //       if (questionIndex < questionsData.length - 1) {
+  //         setQuestionIndex((prevIndex) => prevIndex + 1);
+  //       } else {
+  //         setIsFinished(true);
+  //       }
+  //       setIsWaiting(false);
+  //       setHasAnswered(false);
+  //     }, 1500);
+  //   },
+  //   [questionIndex, questionsData.length, numQuestions],
+  // );
 
   const handlePlayAgain = () => {
     const randomQuestions = getRandomQuestions(allQuestionsData);
@@ -93,6 +122,30 @@ function App() {
     setIncorrectAnswers(0);
   };
 
+  // const wrongSound = new Howl({
+  //   src: ["/sound/wrong-choice.mp3"],
+  //   html5: true,
+  //   volume: 0.3,
+  // });
+
+  useEffect(() => {
+    setTimeLeft(10);
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 0.1) {
+          clearInterval(timer);
+          // handleNoAnswer(false);
+          handleNextQuestion(false);
+          return 0;
+        }
+        return prev - 0.1;
+      });
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, [handleNextQuestion, questionIndex]);
+
   return (
     <Main>
       <AnimatePresence mode="wait">
@@ -114,7 +167,7 @@ function App() {
               <motion.div
                 initial={{ opacity: 0, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 3 }}
+                transition={{ duration: 2 }}
                 exit={{
                   opacity: 0,
                   y: -20,
@@ -170,6 +223,7 @@ function App() {
             <QuestionPage
               questionsData={questionsData}
               questionIndex={questionIndex}
+              timeLeft={timeLeft}
             >
               <AllOptionButton
                 question={questionsData[questionIndex]}
