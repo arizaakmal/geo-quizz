@@ -46,7 +46,7 @@ const ScorePage: React.FC<ScorePageProps> = ({
     };
   }, [count, score]);
   return (
-    <div className=" mt-32 sm:mt-20 flex h-auto flex-col items-center justify-center rounded-xl bg-teal-500 p-5 text-center shadow-xl">
+    <div className="flex h-auto flex-col items-center justify-center rounded-xl bg-teal-500 p-5 text-center shadow-xl">
       <h1 className="font-bungee text-5xl font-bold text-gray-200 drop-shadow-lg">
         Your score:
       </h1>
