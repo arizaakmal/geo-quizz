@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Title from "./components/home/Title";
 import PlayButton from "./components/home/PlayButton";
@@ -23,6 +23,9 @@ function App() {
   const [incorrectAnswers, setIncorrectAnswers] = useState(0);
   const [numQuestions, setNumQuestions] = useState(10);
   const [timeLeft, setTimeLeft] = useState(10);
+  // const [hasTimeExpired, setHasTimeExpired] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const hasTimeExpired = useRef(false);
 
   type Question = {
     question: string;
@@ -44,12 +47,12 @@ function App() {
     setQuestionsData(randomQuestions);
   }, [getRandomQuestions]);
 
-  const handleClick = () => {
-    setIsVisible(false);
-  };
-
   const handleNextQuestion = useCallback(
     (isCorrect: boolean) => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+
       setIsWaiting(true);
       setHasAnswered(true);
 
@@ -62,6 +65,7 @@ function App() {
 
       setTimeout(() => {
         if (questionIndex < questionsData.length - 1) {
+          console.log(questionIndex + 1);
           setQuestionIndex((prevIndex) => prevIndex + 1);
         } else {
           setIsFinished(true);
@@ -73,32 +77,12 @@ function App() {
     [questionIndex, questionsData.length, numQuestions],
   );
 
-  // const handleNoAnswer = useCallback(
-  //   (isCorrect: boolean) => {
-  //     setIsWaiting(true);
-  //     setHasAnswered(false);
-
-  //     if (isCorrect) {
-  //       setCorrectAnswers((prevCorrect) => prevCorrect + 1);
-  //       setScore((prevScore) => prevScore + 100 / numQuestions);
-  //     } else {
-  //       setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
-  //     }
-
-  //     setTimeout(() => {
-  //       if (questionIndex < questionsData.length - 1) {
-  //         setQuestionIndex((prevIndex) => prevIndex + 1);
-  //       } else {
-  //         setIsFinished(true);
-  //       }
-  //       setIsWaiting(false);
-  //       setHasAnswered(false);
-  //     }, 1500);
-  //   },
-  //   [questionIndex, questionsData.length, numQuestions],
-  // );
-
   const handlePlayAgain = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    setTimeLeft(10);
+
     const randomQuestions = getRandomQuestions(allQuestionsData);
     setQuestionsData(randomQuestions);
     setIsVisible(false);
@@ -113,6 +97,14 @@ function App() {
 
   const handleHome = () => {
     setIsVisible(true);
+  };
+
+  const handleClick = () => {
+    setIsVisible(false);
+  };
+
+  const handleStartGame = () => {
+    setTimeLeft(10);
     setQuestionIndex(0);
     setIsFinished(false);
     setIsWaiting(false);
@@ -122,29 +114,49 @@ function App() {
     setIncorrectAnswers(0);
   };
 
-  // const wrongSound = new Howl({
-  //   src: ["/sound/wrong-choice.mp3"],
-  //   html5: true,
-  //   volume: 0.3,
-  // });
+  const wrongSound = useMemo(
+    () =>
+      new Howl({
+        src: ["/sound/wrong-choice.mp3"],
+        html5: true,
+        volume: 0.3,
+      }),
+    [],
+  );
 
   useEffect(() => {
+    if (isFinished) return;
     setTimeLeft(10);
+    hasTimeExpired.current = false;
 
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 0.1) {
-          clearInterval(timer);
-          // handleNoAnswer(false);
-          handleNextQuestion(false);
-          return 0;
-        }
-        return prev - 0.1;
-      });
-    }, 100);
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
 
-    return () => clearInterval(timer);
-  }, [handleNextQuestion, questionIndex]);
+    timerRef.current = setTimeout(() => {
+      timerRef.current = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 0.1 && !hasTimeExpired.current) {
+            clearInterval(timerRef.current!);
+            hasTimeExpired.current = true;
+            if (!isFinished && !isVisible) {
+              wrongSound.play();
+            }
+            setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
+
+            setTimeout(() => {
+              handleNextQuestion(false);
+            }, 50);
+
+            return 0;
+          }
+          return prev - 0.1;
+        });
+      }, 100);
+    }, 500);
+
+    return () => clearInterval(timerRef.current!);
+  }, [handleNextQuestion, isFinished, isVisible, questionIndex, wrongSound]);
 
   return (
     <Main>
@@ -161,6 +173,7 @@ function App() {
                   scale: 0,
                   transition: { duration: 0.5, delay: 1 },
                 }}
+                onAnimationComplete={handleStartGame}
               >
                 <Title />
               </motion.div>
@@ -211,7 +224,7 @@ function App() {
           </motion.div>
         ) : (
           <motion.div
-            key="question"
+            key="questionIndex"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}

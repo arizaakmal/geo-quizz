@@ -7,7 +7,7 @@ const Time: React.FC<TimeProps> = ({ timeLeft }) => {
   const progress = (timeLeft / maxTime) * 100;
 
   return (
-    <div className="mb-4 mt-10 h-4 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+    <div className="mb-8 h-4 w-full rounded-full bg-gray-200 dark:bg-gray-700">
       <div
         className="h-4 rounded-full bg-yellow-300 transition-all duration-100 ease-linear"
         style={{ width: `${progress}%` }}
