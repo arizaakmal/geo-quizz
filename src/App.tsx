@@ -77,15 +77,8 @@ function App() {
     [questionIndex, questionsData.length, numQuestions],
   );
 
-  const handlePlayAgain = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
+  const resetGame = () => {
     setTimeLeft(10);
-
-    const randomQuestions = getRandomQuestions(allQuestionsData);
-    setQuestionsData(randomQuestions);
-    setIsVisible(false);
     setQuestionIndex(0);
     setIsFinished(false);
     setIsWaiting(false);
@@ -93,6 +86,13 @@ function App() {
     setScore(0);
     setCorrectAnswers(0);
     setIncorrectAnswers(0);
+  };
+
+  const handlePlayAgain = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    setQuestionsData(getRandomQuestions(allQuestionsData));
+    setIsVisible(false);
+    resetGame();
   };
 
   const handleHome = () => {
@@ -104,14 +104,7 @@ function App() {
   };
 
   const handleStartGame = () => {
-    setTimeLeft(10);
-    setQuestionIndex(0);
-    setIsFinished(false);
-    setIsWaiting(false);
-    setHasAnswered(false);
-    setScore(0);
-    setCorrectAnswers(0);
-    setIncorrectAnswers(0);
+    resetGame();
   };
 
   const wrongSound = useMemo(
@@ -124,14 +117,11 @@ function App() {
     [],
   );
 
-  useEffect(() => {
-    if (isFinished) return;
+  const startTimer = useCallback(() => {
     setTimeLeft(10);
     hasTimeExpired.current = false;
 
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
+    if (timerRef.current) clearInterval(timerRef.current);
 
     timerRef.current = setTimeout(() => {
       timerRef.current = setInterval(() => {
@@ -141,22 +131,21 @@ function App() {
             hasTimeExpired.current = true;
             if (!isFinished && !isVisible) {
               wrongSound.play();
+              setIncorrectAnswers((prev) => prev + 1);
+              setTimeout(() => handleNextQuestion(false), 50);
             }
-            setIncorrectAnswers((prevIncorrect) => prevIncorrect + 1);
-
-            setTimeout(() => {
-              handleNextQuestion(false);
-            }, 50);
-
             return 0;
           }
           return prev - 0.1;
         });
       }, 100);
     }, 500);
+  }, [handleNextQuestion, isFinished, isVisible, wrongSound]);
 
+  useEffect(() => {
+    if (!isFinished) startTimer();
     return () => clearInterval(timerRef.current!);
-  }, [handleNextQuestion, isFinished, isVisible, questionIndex, wrongSound]);
+  }, [handleNextQuestion, isFinished, isVisible, questionIndex, startTimer]);
 
   return (
     <Main>
