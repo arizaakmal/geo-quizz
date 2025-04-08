@@ -10,6 +10,7 @@ Geo Quizz is a fun and interactive quiz application built with React. Test your 
 - Animated transitions between questions
 - Score tracking and display
 - Sound effects for correct and incorrect answers
+- Countdown timer for each question
 - Responsive design for mobile and desktop
 - Customizable number of questions
 
